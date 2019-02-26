@@ -7,6 +7,6 @@ import com.arellomobile.mvp.MvpView;
  * Skype: diginital
  */
 
-public interface LogoutView extends MvpView {
-    void showLoginScreen();
+public interface LocationsListView extends MvpView {
+
 }

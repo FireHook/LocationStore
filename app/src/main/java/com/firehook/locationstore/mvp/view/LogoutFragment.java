@@ -9,10 +9,9 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 import com.arellomobile.mvp.MvpAppCompatFragment;
-import com.firehook.locationstore.LocationStoreManager;
+import com.arellomobile.mvp.presenter.InjectPresenter;
 import com.firehook.locationstore.R;
-
-import javax.inject.Inject;
+import com.firehook.locationstore.mvp.presenter.LogoutPresenter;
 
 /**
  * Created by Vladyslav Bondar on 26.02.2019
@@ -21,7 +20,7 @@ import javax.inject.Inject;
 
 public class LogoutFragment extends MvpAppCompatFragment implements LogoutView {
 
-    @Inject LocationStoreManager mLocationStoreManager;
+    @InjectPresenter LogoutPresenter mPresenter;
 
     @Nullable @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -34,14 +33,14 @@ public class LogoutFragment extends MvpAppCompatFragment implements LogoutView {
         Button mLogOutButton;
         mLogOutButton = getActivity().findViewById(R.id.logout_button);
         mLogOutButton.setOnClickListener( v -> {
-
-            mLocationStoreManager.getGoogleSignInClient().signOut().addOnCompleteListener(task -> {
-                mLocationStoreManager.clearCachedClientAccount();
-                getActivity().getSupportFragmentManager().beginTransaction()
-                        .replace(R.id.content_frame, new LoginFragment(), LoginFragment.class.getSimpleName())
-                        .commit();
-            });
+            mPresenter.logOut();
         });
     }
 
+    @Override
+    public void showLoginScreen() {
+        getActivity().getSupportFragmentManager().beginTransaction()
+                .replace(R.id.content_frame, new LoginFragment(), LoginFragment.class.getSimpleName())
+                .commit();
+    }
 }

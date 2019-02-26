@@ -5,17 +5,20 @@ import android.content.Context;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 
+import javax.inject.Singleton;
+
 /**
  * Created by Vladyslav Bondar on 26.02.2019
  * Skype: diginital
  */
 
+@Singleton
 public class LocationStoreManager {
 
     private Context mApplicationContext;
 
-    private GoogleSignInClient mGoogleSignInClient;
-    private GoogleSignInAccount mGoogleSignInAccount;
+    private GoogleSignInClient mGoogleSignInClient = null;
+    private GoogleSignInAccount mGoogleSignInAccount = null;
 
     public LocationStoreManager(Context applicationContext) {
         mApplicationContext = applicationContext;

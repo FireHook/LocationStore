@@ -11,7 +11,6 @@ import android.widget.Toast;
 
 import com.arellomobile.mvp.MvpAppCompatFragment;
 import com.arellomobile.mvp.presenter.InjectPresenter;
-import com.firehook.locationstore.LocationStoreManager;
 import com.firehook.locationstore.R;
 import com.firehook.locationstore.mvp.presenter.LoginPresenter;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
@@ -19,8 +18,6 @@ import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.SignInButton;
-
-import javax.inject.Inject;
 
 import timber.log.Timber;
 
@@ -30,8 +27,6 @@ import timber.log.Timber;
  */
 
 public class LoginFragment extends MvpAppCompatFragment implements LoginView {
-
-    @Inject LocationStoreManager mLocationStoreManager;
 
     @InjectPresenter LoginPresenter mPresenter;
 
@@ -47,15 +42,16 @@ public class LoginFragment extends MvpAppCompatFragment implements LoginView {
         super.onViewCreated(view, savedInstanceState);
         Toast.makeText(getContext(), "Login Fragment!", Toast.LENGTH_LONG).show();
 
+        SignInButton signInButton;
+        signInButton = getActivity().findViewById(R.id.sign_in_button);
+
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestEmail()
                 .build();
 
         GoogleSignInClient googleSignInClient = GoogleSignIn.getClient(getActivity(), gso);
-        mLocationStoreManager.setGoogleSignInClient(googleSignInClient);
-
         GoogleSignInAccount googleSignInAccount = GoogleSignIn.getLastSignedInAccount(getActivity());
-        mLocationStoreManager.setGoogleSignInAccount(googleSignInAccount);
+        mPresenter.saveGoogleClientAccount(googleSignInClient, googleSignInAccount);
 
         if (googleSignInAccount != null) {
             Timber.d("Already entered G+ account:%s", googleSignInAccount.getEmail());
@@ -64,8 +60,6 @@ public class LoginFragment extends MvpAppCompatFragment implements LoginView {
             Timber.d("Not entered G+ account!");
         }
 
-        SignInButton signInButton;
-        signInButton = getActivity().findViewById(R.id.sign_in_button);
         signInButton.setSize(SignInButton.SIZE_WIDE);
         signInButton.setOnClickListener(v -> {
                     Timber.d("Sign In button Clicked!");
@@ -73,7 +67,6 @@ public class LoginFragment extends MvpAppCompatFragment implements LoginView {
                     getActivity().startActivityForResult(signInIntent, RC_SIGN_IN);
                 }
         );
-
     }
 
     @Override
