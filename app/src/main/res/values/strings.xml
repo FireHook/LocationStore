@@ -1,9 +1,16 @@
 <resources>
     <string name="app_name">LocationStore</string>
     <string name="log_out">Log out from Google+</string>
-    <string name="locations_list_fragment">Locations list</string>
+    <string name="locations_list_fragment">List</string>
     <string name="map_locations_fragment">Map</string>
     <string name="log_out_fragment">Log Out</string>
     <string name="empty_locations">No item locations</string>
-    <string name="firebase_error">Firebase reading error</string>
+    <string name="firebase_reading_error">Firebase reading error</string>
+    <string name="firebase_inserting_error">Firebase inserting error</string>
+    <string name="latitude">Latitude</string>
+    <string name="longitude">Longitude</string>
+    <string name="location_name">Location name</string>
+    <string name="ok">OK</string>
+    <string name="cancel">CANCEL</string>
+    <string name="log_in">LOG IN</string>
 </resources>

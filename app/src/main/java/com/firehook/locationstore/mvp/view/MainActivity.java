@@ -12,7 +12,6 @@ import com.firehook.locationstore.mvp.presenter.MainPresenter;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.tasks.Task;
-import com.google.firebase.database.FirebaseDatabase;
 
 /**
  * Created by Vladyslav Bondar on 26.02.2019
@@ -28,17 +27,7 @@ public class MainActivity extends MvpAppCompatActivity implements MainView {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         mPresenter.showLoginScreen();
-        FirebaseDatabase db = FirebaseDatabase.getInstance();
-        
     }
-
-//    @Override
-//    public void onBackPressed() {
-//        if (getSupportFragmentManager().getBackStackEntryCount() > 1)
-//            super.onBackPressed();
-//        else
-//            finish();
-//    }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {

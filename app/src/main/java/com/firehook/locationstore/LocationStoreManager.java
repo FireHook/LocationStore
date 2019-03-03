@@ -1,9 +1,8 @@
 package com.firehook.locationstore;
 
-import android.content.Context;
-
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import javax.inject.Singleton;
 
@@ -14,14 +13,12 @@ import javax.inject.Singleton;
 
 @Singleton
 public class LocationStoreManager {
-
-    private Context mApplicationContext;
-
     private GoogleSignInClient mGoogleSignInClient = null;
     private GoogleSignInAccount mGoogleSignInAccount = null;
+    private FirebaseFirestore mFirestore;
 
-    public LocationStoreManager(Context applicationContext) {
-        mApplicationContext = applicationContext;
+    public LocationStoreManager() {
+        mFirestore = FirebaseFirestore.getInstance();
     }
 
     public GoogleSignInClient getGoogleSignInClient() {
@@ -45,4 +42,7 @@ public class LocationStoreManager {
         mGoogleSignInAccount = null;
     }
 
+    public FirebaseFirestore getFirebaseFirestore() {
+        return mFirestore;
+    }
 }

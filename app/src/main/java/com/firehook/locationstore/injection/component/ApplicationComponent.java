@@ -1,6 +1,7 @@
 package com.firehook.locationstore.injection.component;
 
 import com.firehook.locationstore.injection.module.ApplicationModule;
+import com.firehook.locationstore.mvp.presenter.LocationMapPresenter;
 import com.firehook.locationstore.mvp.presenter.LocationsListPresenter;
 import com.firehook.locationstore.mvp.presenter.LoginPresenter;
 import com.firehook.locationstore.mvp.presenter.LogoutPresenter;
@@ -22,4 +23,5 @@ public interface ApplicationComponent  {
     void inject(LoginPresenter presenter);
     void inject(LogoutPresenter logoutPresenter);
     void inject(LocationsListPresenter locationsListPresenter);
+    void inject(LocationMapPresenter locationMapPresenter);
 }

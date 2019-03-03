@@ -13,6 +13,9 @@ import com.arellomobile.mvp.presenter.InjectPresenter;
 import com.firehook.locationstore.R;
 import com.firehook.locationstore.mvp.presenter.LogoutPresenter;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 /**
  * Created by Vladyslav Bondar on 26.02.2019
  * Skype: diginital
@@ -20,18 +23,20 @@ import com.firehook.locationstore.mvp.presenter.LogoutPresenter;
 
 public class LogoutFragment extends MvpAppCompatFragment implements LogoutView {
 
+    @BindView(R.id.logout_button) Button mLogOutButton;
+
     @InjectPresenter LogoutPresenter mPresenter;
 
     @Nullable @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_logout, container, false);
+        View view = inflater.inflate(R.layout.fragment_logout, container, false);
+        ButterKnife.bind(this, view);
+        return view;
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        Button mLogOutButton;
-        mLogOutButton = getActivity().findViewById(R.id.logout_button);
         mLogOutButton.setOnClickListener( v -> {
             mPresenter.logOut();
         });

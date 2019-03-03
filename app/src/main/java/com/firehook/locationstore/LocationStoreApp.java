@@ -20,8 +20,8 @@ public class LocationStoreApp extends Application {
     @Override public void onCreate() {
         super.onCreate();
 
-        if (BuildConfig.DEBUG) Timber.plant(new MyTimberTree());
+        if (BuildConfig.DEBUG) Timber.plant(new LocationStoreTimberTree());
 
-        sApplicationComponent = DaggerApplicationComponent.builder().applicationModule(new ApplicationModule(getApplicationContext())).build();
+        sApplicationComponent = DaggerApplicationComponent.builder().applicationModule(new ApplicationModule()).build();
     }
 }

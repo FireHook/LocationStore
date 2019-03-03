@@ -1,7 +1,5 @@
 package com.firehook.locationstore.injection.module;
 
-import android.content.Context;
-
 import com.firehook.locationstore.LocationStoreManager;
 
 import javax.inject.Singleton;
@@ -17,14 +15,9 @@ import dagger.Provides;
 @Module
 public class ApplicationModule {
 
-    private Context mContext;
-
-    public ApplicationModule(Context context) { this.mContext = context; }
+    public ApplicationModule() { }
 
     @Provides @Singleton
-    Context provideContext() { return mContext; }
-
-    @Provides @Singleton
-    LocationStoreManager provideLocationStoreManager() { return new LocationStoreManager(mContext); }
+    LocationStoreManager provideLocationStoreManager() { return new LocationStoreManager(); }
 
 }

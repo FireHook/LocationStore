@@ -12,7 +12,7 @@ import timber.log.Timber;
  * Skype: diginital
  */
 
-public class MyTimberTree extends Timber.DebugTree {
+public class LocationStoreTimberTree extends Timber.DebugTree {
 
     @Override protected @Nullable String createStackElementTag(@NotNull StackTraceElement element) {
 

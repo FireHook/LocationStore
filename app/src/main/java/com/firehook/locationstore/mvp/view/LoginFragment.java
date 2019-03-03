@@ -7,7 +7,6 @@ import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import com.arellomobile.mvp.MvpAppCompatFragment;
 import com.arellomobile.mvp.presenter.InjectPresenter;
@@ -18,8 +17,6 @@ import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.SignInButton;
-
-import timber.log.Timber;
 
 /**
  * Created by Vladyslav Bondar on 26.02.2019
@@ -40,7 +37,8 @@ public class LoginFragment extends MvpAppCompatFragment implements LoginView {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        Toast.makeText(getContext(), "Login Fragment!", Toast.LENGTH_LONG).show();
+
+        ((MainActivity) getActivity()).getSupportActionBar().setTitle(R.string.app_name);
 
         SignInButton signInButton;
         signInButton = getActivity().findViewById(R.id.sign_in_button);
@@ -54,18 +52,14 @@ public class LoginFragment extends MvpAppCompatFragment implements LoginView {
         mPresenter.saveGoogleClientAccount(googleSignInClient, googleSignInAccount);
 
         if (googleSignInAccount != null) {
-            Timber.d("Already entered G+ account:%s", googleSignInAccount.getEmail());
             mPresenter.showMainScreen();
-        } else {
-            Timber.d("Not entered G+ account!");
         }
 
         signInButton.setSize(SignInButton.SIZE_WIDE);
         signInButton.setOnClickListener(v -> {
-                    Timber.d("Sign In button Clicked!");
-                    Intent signInIntent = googleSignInClient.getSignInIntent();
-                    getActivity().startActivityForResult(signInIntent, RC_SIGN_IN);
-                }
+                Intent signInIntent = googleSignInClient.getSignInIntent();
+                getActivity().startActivityForResult(signInIntent, RC_SIGN_IN);
+            }
         );
     }
 
