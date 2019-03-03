@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="log_out_text_size">24sp</dimen>
+    <dimen name="row_image_width">75dp</dimen>
+    <dimen name="row_image_height">75dp</dimen>
+    <dimen name="row_text_width">220dp</dimen>
+    <dimen name="row_text_height">33dp</dimen>
+</resources>
